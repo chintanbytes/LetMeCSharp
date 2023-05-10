@@ -25,9 +25,27 @@ namespace MyCSharpLibTests.CSharpTests
             Assert.IsTrue(myClass.CanIRelaxToday());
         }
 
-        private static void ItsSundayNow(object? sender, Days e)
+        private static void ItsSundayNow(object sender, Days e)
         {
             Assert.AreEqual(Days.Sunday, e);
+        }
+
+        [TestMethod]
+        public void TestSaturdayIsAWeekendWithSwitchPatternMatching()
+        {
+            Assert.IsTrue(UseDaysEnum.IsWeekend(Days.Saturday));
+        }
+
+        [TestMethod]
+        public void TestSundayIsAWeekendWithSwitchPatternMatching()
+        {
+            Assert.IsTrue(UseDaysEnum.IsWeekend(Days.Sunday));
+        }
+
+        [TestMethod]
+        public void TestMondayIsNotAWeekendWithSwitchPatternMatching()
+        {
+            Assert.IsFalse(UseDaysEnum.IsWeekend(Days.Monday));
         }
     }
 }
