@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using MyCSharpLib.LeetCode;
 
 namespace MyCSharpLibTests.LeetCodeTests
@@ -19,6 +15,7 @@ namespace MyCSharpLibTests.LeetCodeTests
             int extraCandies = 1;
 
             var result = sol.KidsWithCandiesSol(candies, extraCandies);
+            Assert.IsTrue(result.ElementAt(1));
         }
     }
 }

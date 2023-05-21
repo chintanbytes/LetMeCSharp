@@ -20,7 +20,7 @@ namespace MyCSharpLib.LeetCode
             }
 
 
-            candies.Select(x => x + extraCandies > candies.Max()).ToArray();
+            //candies.Select(x => x + extraCandies > candies.Max()).ToArray();
 
             return result;
         }
