@@ -4,9 +4,13 @@ using System;
 
 namespace MyCSharpLib.CSharp
 {
+    public class DayEventArgs : EventArgs
+    {
+        public Days day;
+    }
     public class UseDaysEnum
     {
-        public event EventHandler<Days> DayChanged;
+        public event EventHandler<DayEventArgs> DayChanged;
         public UseDaysEnum(Days day) => Today = day;
 
         public Days Today { get; private set; }
@@ -32,7 +36,7 @@ namespace MyCSharpLib.CSharp
 
         protected virtual void OnDayChanged()
         {
-            DayChanged?.Invoke(this, Today);
+            DayChanged?.Invoke(this, new DayEventArgs(){day = Today});
         }
 
         /// <summary>

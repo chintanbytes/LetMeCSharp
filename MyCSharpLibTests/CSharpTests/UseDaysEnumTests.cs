@@ -25,9 +25,9 @@ namespace MyCSharpLibTests.CSharpTests
             Assert.IsTrue(myClass.CanIRelaxToday());
         }
 
-        private static void ItsSundayNow(object sender, Days e)
+        private static void ItsSundayNow(object sender, DayEventArgs e)
         {
-            Assert.AreEqual(Days.Sunday, e);
+            Assert.AreEqual(Days.Sunday, e.day);
         }
 
         [TestMethod]
