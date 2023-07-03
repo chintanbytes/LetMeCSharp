@@ -21,11 +21,9 @@ namespace MyCSharpLib.LeetCode
                 {
                     return new[] { dic[diff], i };
                 }
-                else
-                {
-                    if (!dic.ContainsKey(nums[i]))
-                        dic.Add(nums[i], i);
-                }
+
+                if (!dic.ContainsKey(nums[i]))
+                    dic.Add(nums[i], i);
             }
             return new[] { -1, -1 };
 

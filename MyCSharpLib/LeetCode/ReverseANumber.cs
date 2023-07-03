@@ -1,22 +1,30 @@
-﻿namespace MyCSharpLib.LeetCode;
+﻿using System;
+
+namespace MyCSharpLib.LeetCode;
 
 public class ReverseANumber
 {
     public int Reverse(int x)
     {
-        long result = 0;
+        int result = 0;
         
         while (x !=0 )
         {
             var lastDigit = x % 10;
             x = x / 10;
+            if (result > int.MaxValue/10 || result == int.MaxValue/10 && lastDigit >= int.MaxValue % 10)
+            {
+                return 0;
+            }
+
+            if (result < int.MinValue / 10 || result == int.MinValue / 10 && lastDigit <= int.MinValue % 10)
+            {
+                return 0;
+            }
+
             result = result * 10 + lastDigit;
         }
 
-        return result switch
-        {
-            int.MinValue or > int.MaxValue => 0,
-            _ => (int)result
-        };
+       return result;
     }
 }

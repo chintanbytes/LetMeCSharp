@@ -1,4 +1,5 @@
-﻿using MyCSharpLib.CSharp;
+﻿using System.Reflection.Metadata;
+using MyCSharpLib.CSharp;
 
 namespace MyCSharpLibTests.CSharpTests;
 
@@ -43,5 +44,9 @@ public class ValueVsRefTests
     {
         mod.MakeCopyAndModifyValue(ref obj);
         Assert.AreEqual(20, obj.Value);
+        mod.ParamsExample("Chintan", "Krupa");
+        mod.ParamsExample(new[]{
+            "Chintan", "Krupa"
+        });
     }
 }

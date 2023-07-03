@@ -8,17 +8,26 @@ namespace MyCSharpLib.CSharp;
 
 public class ValueVsRef
 {
+    public int Value { get; set; }
+
+    public int ValueNew { get; set; }
+
     public ValueVsRef()
     {
         
+    }
+
+    public ValueVsRef(int value, int valueNew)
+    {
+        Value = value;
+        ValueNew = valueNew;
     }
 
     public ValueVsRef(int value)
     {
         Value = value;
     }
-
-    public int Value { get; set; }
+    
 }
 
 public class ModifyObj
@@ -47,5 +56,13 @@ public class ModifyObj
         {
             Value = 20
         };
+    }
+
+    public void ParamsExample(params string[] names)
+    {
+        foreach (var name in names)
+        {
+            Console.WriteLine("Name is: {0}", name);
+        }
     }
 }

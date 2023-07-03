@@ -19,15 +19,28 @@ namespace MyCSharpLibTests.CSharpTests
         {
             UseDaysEnum myClass = new(Days.Saturday);
             myClass.DayChanged += ItsSundayNow;
+            myClass.DayEvt += MyClass_DayEvt;
+            myClass.DayEvt1 += MyClass_DayEvt1;
 
             Assert.IsTrue(myClass.CanIRelaxToday());
             myClass.NextDay();
             Assert.IsTrue(myClass.CanIRelaxToday());
+            
+        }
+
+        private void MyClass_DayEvt(object sender, DayEventArgs e)
+        {
+            Assert.AreEqual(Days.Sunday, e.Day);
+        }
+
+        private void MyClass_DayEvt1(object sender, EventArgs e)
+        {
+            Assert.AreEqual(Days.Sunday, Days.Sunday);
         }
 
         private static void ItsSundayNow(object sender, DayEventArgs e)
         {
-            Assert.AreEqual(Days.Sunday, e.day);
+            Assert.AreEqual(Days.Sunday, e.Day);
         }
 
         [TestMethod]

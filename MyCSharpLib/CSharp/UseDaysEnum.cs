@@ -6,11 +6,21 @@ namespace MyCSharpLib.CSharp
 {
     public class DayEventArgs : EventArgs
     {
-        public Days day;
+        public DayEventArgs(Days day)
+        { 
+            Day = day;
+        }
+
+        public Days Day { get; private set; }
     }
+    
     public class UseDaysEnum
     {
+        public delegate void DayEventHandler(object sender, DayEventArgs e);
         public event EventHandler<DayEventArgs> DayChanged;
+
+        public event DayEventHandler DayEvt;
+        public event EventHandler DayEvt1;
         public UseDaysEnum(Days day) => Today = day;
 
         public Days Today { get; private set; }
@@ -20,23 +30,27 @@ namespace MyCSharpLib.CSharp
             if (Today == Days.Sunday)
                 Today = Days.Monday;
             else
-                Today++;
+                Today = (Days)((int)Today << 1);
             OnDayChanged();
         }
 
         public bool AmIWorkingToday()
         {
-            return Today.IsWeekday();
+            return (Days)((int)Today & (int)Days.Weekday) == Today;
+            //return Today.IsWeekday();
         }
 
         public bool CanIRelaxToday()
         {
-            return Today.IsWeekend();
+            return (Days)((int)Today & (int)Days.Weekend) == Today;
+            //return Today.IsWeekend();
         }
 
         protected virtual void OnDayChanged()
         {
-            DayChanged?.Invoke(this, new DayEventArgs(){day = Today});
+            DayChanged?.Invoke(this, new DayEventArgs(Today));
+            DayEvt?.Invoke(this, new DayEventArgs(Today));
+            DayEvt1?.Invoke(this, new DayEventArgs(Today));
         }
 
         /// <summary>
